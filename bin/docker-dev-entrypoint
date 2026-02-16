@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+# Ensure database exists and is migrated before starting dev processes
+./bin/rails db:prepare
+
+exec "${@}"
