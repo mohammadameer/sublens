@@ -51,7 +51,8 @@ COPY . .
 RUN bundle exec bootsnap precompile -j 1 app/ lib/
 
 # Build Tailwind CSS (with DaisyUI) so compiled CSS is in the image
-RUN ./bin/rails tailwindcss:build
+# Use dummy SECRET_KEY_BASE since we don't have credentials at build time
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails tailwindcss:build
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile

@@ -23,6 +23,6 @@ docker compose up --build
 ## Deploy to Railway
 
 - Add a PostgreSQL service and set `DATABASE_URL` to `${{Postgres.DATABASE_PUBLIC_URL}}`.
-- Set `RAILS_ENV=production` and `SECRET_KEY_BASE` or `RAILS_MASTER_KEY`.
+- Set `RAILS_ENV=production` and `SECRET_KEY_BASE` or `b`.
 - Start command (if not using `railway.json`): `bin/rails db:prepare && bin/rails server -b ::`
 - Generate a domain in Settings → Networking.
