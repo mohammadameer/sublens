@@ -4,7 +4,6 @@
   },
   "deploy": {
     "preDeployCommand": "bin/rails tailwindcss:build",
-    "startCommand": "bin/rails db:prepare && bin/rails server -b ::",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }

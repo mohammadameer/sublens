@@ -85,10 +85,10 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+  # Require non-blank DATABASE_URL so we never fall back to Unix socket (which fails on Railway)
   primary: &primary_production
     <<: *default
-    # Railway/Heroku: set DATABASE_URL to ${{Postgres.DATABASE_PUBLIC_URL}} in Variables
-    url: <%= ENV.fetch("DATABASE_URL") { raise "Set DATABASE_URL (e.g. ${{Postgres.DATABASE_PUBLIC_URL}}) in Railway Variables" } %>
+    url: <%= (url = ENV["DATABASE_URL"].to_s.strip).present? ? url : (raise "Set DATABASE_URL in Railway Variables (use Reference → your Postgres service → DATABASE_URL)") %>
     database: sublens_app_production
     username: sublens_app
     password: <%= ENV["SUBLENS_APP_DATABASE_PASSWORD"] %>
